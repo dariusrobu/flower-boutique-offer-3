@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloom & Co. | Florărie Online</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo" onclick="app.navigate('home')">Bloom & Co.</div>
+            <ul class="nav-links">
+                <li onclick="app.navigate('home')">Acasă</li>
+                <li onclick="app.navigate('shop')">Magazin</li>
+                <li onclick="app.navigate('about')">Despre noi</li>
+            </ul>
+            <div class="nav-actions">
+                <div class="cart-icon" onclick="app.navigate('cart')">
+                    <i data-lucide="shopping-bag"></i>
+                    <span id="cart-count">0</span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main id="view-container">
+        <!-- Views will be injected here -->
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h3>Bloom & Co.</h3>
+                    <p>Flori proaspete, livrate cu dragoste în toată țara.</p>
+                </div>
+                <div>
+                    <h4>Link-uri utile</h4>
+                    <ul>
+                        <li onclick="app.navigate('shop')">Toate florile</li>
+                        <li>Îngrijire flori</li>
+                        <li>Contact</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Contact</h4>
+                    <p>Strada Florilor nr. 10, București</p>
+                    <p>+40 722 000 000</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2026 Bloom & Co. Toate drepturile rezervate.
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
