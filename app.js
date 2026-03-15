@@ -22,9 +22,32 @@ const app = {
         this.navigate('home');
         this.updateCartCount();
         lucide.createIcons();
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) this.closeMenu();
+        });
+    },
+
+    toggleMenu() {
+        const nav = document.getElementById('nav-links');
+        const icon = document.querySelector('#menu-toggle i');
+        nav.classList.toggle('active');
+        const isOpen = nav.classList.contains('active');
+        icon.setAttribute('data-lucide', isOpen ? 'x' : 'menu');
+        lucide.createIcons();
+    },
+
+    closeMenu() {
+        const nav = document.getElementById('nav-links');
+        const icon = document.querySelector('#menu-toggle i');
+        if (nav.classList.contains('active')) {
+            nav.classList.remove('active');
+            icon.setAttribute('data-lucide', 'menu');
+            lucide.createIcons();
+        }
     },
 
     navigate(view, params = null) {
+        this.closeMenu();
         this.currentView = view;
         const container = document.getElementById('view-container');
         window.scrollTo(0, 0);
@@ -78,17 +101,17 @@ const app = {
                     <button class="btn btn-outline" onclick="app.navigate('shop')">Vezi tot magazinul</button>
                 </div>
             </section>
-            <section class="container" style="padding: 100px 0;">
+            <section class="container" style="padding: 60px 0;">
                 <div class="section-header">
                     <h2>Ce spun clienții noștri</h2>
                 </div>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
                     ${reviews.map(r => `
-                        <div style="padding: 30px; border: 1px solid var(--border-color); border-radius: 8px; text-align: center;">
-                            <div style="color: var(--leaf-green); margin-bottom: 15px;">
-                                ${Array(r.rating).fill('<i data-lucide="star" style="width: 16px; height: 16px; fill: currentColor;"></i>').join('')}
+                        <div style="padding: 20px; border: 1px solid var(--border-color); border-radius: 8px; text-align: center;">
+                            <div style="color: var(--leaf-green); margin-bottom: 10px;">
+                                ${Array(r.rating).fill('<i data-lucide="star" style="width: 14px; height: 14px; fill: currentColor;"></i>').join('')}
                             </div>
-                            <p style="font-style: italic; margin-bottom: 20px;">"${r.text}"</p>
+                            <p style="font-style: italic; margin-bottom: 15px; font-size: 15px;">"${r.text}"</p>
                             <p><strong>${r.name}</strong></p>
                         </div>
                     `).join('')}
@@ -99,30 +122,30 @@ const app = {
 
     renderAbout() {
         return `
-            <div class="container" style="padding: 80px 0;">
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
+            <div class="container" style="padding: 40px 0;">
+                <div class="grid-responsive">
                     <div>
                         <img src="https://images.unsplash.com/photo-1596199050105-6d5d32222916?q=80&w=800&auto=format&fit=crop" alt="Echipa Bloom & Co." style="width:100%; border-radius:8px; box-shadow: var(--shadow);">
                     </div>
                     <div>
-                        <h1 style="font-size: 48px; margin-bottom: 20px;">Povestea noastră</h1>
-                        <p style="font-size: 18px; color: var(--text-gray); margin-bottom: 20px;">
+                        <h1 style="margin-bottom: 20px;">Povestea noastră</h1>
+                        <p style="color: var(--text-gray); margin-bottom: 20px;">
                             La <strong>Bloom & Co.</strong>, credem că fiecare floare spune o poveste. Călătoria noastră a început din pasiunea pentru natură și dorința de a aduce un strop de culoare și prospețime în casele oamenilor.
                         </p>
-                        <p style="font-size: 18px; color: var(--text-gray); margin-bottom: 20px;">
+                        <p style="color: var(--text-gray); margin-bottom: 20px;">
                             Fiecare buchet este creat manual de floriștii noștri experți, folosind doar cele mai proaspete flori, selectate cu grijă în fiecare dimineață. Nu suntem doar o florărie; suntem mesagerii sentimentelor tale.
                         </p>
-                        <div style="display: flex; gap: 30px; margin-top: 40px;">
-                            <div style="text-align: center;">
-                                <h3 style="color: var(--leaf-green); font-size: 32px;">10+</h3>
+                        <div class="about-stats text-center">
+                            <div>
+                                <h3>10+</h3>
                                 <p>Ani de experiență</p>
                             </div>
-                            <div style="text-align: center;">
-                                <h3 style="color: var(--leaf-green); font-size: 32px;">50k+</h3>
+                            <div>
+                                <h3>50k+</h3>
                                 <p>Clienți fericiți</p>
                             </div>
-                            <div style="text-align: center;">
-                                <h3 style="color: var(--leaf-green); font-size: 32px;">100%</h3>
+                            <div>
+                                <h3>100%</h3>
                                 <p>Garanție prospețime</p>
                             </div>
                         </div>

@@ -14,15 +14,20 @@
     <header>
         <nav class="container">
             <div class="logo" onclick="app.navigate('home')">Bloom & Co.</div>
-            <ul class="nav-links">
+            
+            <ul class="nav-links" id="nav-links">
                 <li onclick="app.navigate('home')">Acasă</li>
                 <li onclick="app.navigate('shop')">Magazin</li>
                 <li onclick="app.navigate('about')">Despre noi</li>
             </ul>
+
             <div class="nav-actions">
                 <div class="cart-icon" onclick="app.navigate('cart')">
                     <i data-lucide="shopping-bag"></i>
                     <span id="cart-count">0</span>
+                </div>
+                <div class="menu-toggle" id="menu-toggle" onclick="app.toggleMenu()">
+                    <i data-lucide="menu"></i>
                 </div>
             </div>
         </nav>
